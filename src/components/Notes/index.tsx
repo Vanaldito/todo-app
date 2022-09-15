@@ -1,33 +1,62 @@
+import { useState } from "react";
+import AllNotes from "./AllNotes";
+import { getNotes } from "../../services/get-notes";
+import { updateNotes } from "../../services/update-notes";
+
 import "./styles.css";
 
 export default function Notes() {
+  const [notes, setNotes] = useState(getNotes());
+
+  const [noteType, setNoteType] = useState<"all" | "active" | "completed">(
+    "all"
+  );
+
+  function changeNoteType(newNoteType: "all" | "active" | "completed") {
+    return () => {
+      setNoteType(newNoteType);
+    };
+  }
+
+  function addNote(newNote: string) {
+    const newNotes = [...notes, newNote];
+
+    updateNotes(newNotes);
+    setNotes(newNotes);
+  }
+
   return (
     <div className="notes">
       <nav className="notes__navbar">
-        <button className="notes__navbar__button" type="button">
+        <button
+          className={`notes__navbar__button${
+            noteType === "all" ? " notes__navbar__button--active" : ""
+          }`}
+          type="button"
+          onClick={changeNoteType("all")}
+        >
           All
         </button>
-        <button className="notes__navbar__button" type="button">
+        <button
+          className={`notes__navbar__button${
+            noteType === "active" ? " notes__navbar__button--active" : ""
+          }`}
+          type="button"
+          onClick={changeNoteType("active")}
+        >
           Active
         </button>
-        <button className="notes__navbar__button" type="button">
+        <button
+          className={`notes__navbar__button${
+            noteType === "completed" ? " notes__navbar__button--active" : ""
+          }`}
+          type="button"
+          onClick={changeNoteType("completed")}
+        >
           Completed
         </button>
       </nav>
-      <form className="notes__add-note-form">
-        <input
-          className="notes__add-note-input"
-          type="text"
-          placeholder="Add details"
-        />
-        <button className="notes__add-note-button" type="button">
-          Add
-        </button>
-      </form>
-      <div className="note">
-        <input type="checkbox" />
-        <span>Do coding challenges</span>
-      </div>
+      {noteType === "all" && <AllNotes notes={notes} addNote={addNote} />}
     </div>
   );
 }

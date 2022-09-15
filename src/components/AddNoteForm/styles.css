@@ -1,0 +1,27 @@
+.add-note-form {
+  margin: 15px auto;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-note-input,
+.add-note-button {
+  font-size: 1.4rem;
+  border-radius: 12px;
+  outline: none;
+}
+
+.add-note-input {
+  padding: 11px 10px 9px;
+  border: 1px solid #bdbdbd;
+  width: min(calc(100% - 80px), 300px);
+}
+
+.add-note-button {
+  padding: 11px 20px 9px;
+  border: none;
+  background-color: #2f80ed;
+  color: white;
+}

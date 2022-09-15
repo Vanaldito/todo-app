@@ -26,32 +26,19 @@
   border: none;
 }
 
-.notes__add-note-form {
-  margin: 15px auto;
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  justify-content: center;
+.notes__navbar__button--active {
+  position: relative;
 }
 
-.notes__add-note-input,
-.notes__add-note-button {
-  font-size: 1.4rem;
-  border-radius: 12px;
-  outline: none;
-}
-
-.notes__add-note-input {
-  padding: 11px 10px 9px;
-  border: 1px solid #bdbdbd;
-  width: min(calc(100% - 80px), 300px);
-}
-
-.notes__add-note-button {
-  padding: 11px 20px 9px;
-  border: none;
-  background-color: #2f80ed;
-  color: white;
+.notes__navbar__button--active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-bottom: 4px solid #2f80ed;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 }
 
 .note {
