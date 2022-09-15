@@ -1,8 +1,9 @@
-import { Note } from "../../types";
+import { Note as TypeNote } from "../../types";
 import AddNoteForm from "../AddNoteForm";
+import Note from "../Note";
 
 interface ActiveNotesProps {
-  activeNotes: Note[];
+  activeNotes: TypeNote[];
   addNote: (noteContent: string) => void;
 }
 
@@ -14,10 +15,7 @@ export default function ActiveNotes({
     <>
       <AddNoteForm addNote={addNote} />
       {activeNotes.map((note, index) => (
-        <div className="note" key={index}>
-          <input type="checkbox" />
-          <span>{note.content}</span>
-        </div>
+        <Note key={index} content={note.content} />
       ))}
     </>
   );

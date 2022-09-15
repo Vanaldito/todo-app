@@ -1,0 +1,9 @@
+.note {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.5rem;
+  max-width: 400px;
+  padding: 3px;
+  margin: 5px auto;
+}
