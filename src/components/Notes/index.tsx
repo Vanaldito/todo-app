@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AllNotes from "./AllNotes";
+import { Note } from "../../types";
 import { getNotes } from "../../services/get-notes";
 import { updateNotes } from "../../services/update-notes";
 
@@ -18,8 +19,11 @@ export default function Notes() {
     };
   }
 
-  function addNote(newNote: string) {
-    const newNotes = [...notes, newNote];
+  function addNote(newNoteContent: string) {
+    const newNotes: Note[] = [
+      ...notes,
+      { type: "active", content: newNoteContent },
+    ];
 
     updateNotes(newNotes);
     setNotes(newNotes);

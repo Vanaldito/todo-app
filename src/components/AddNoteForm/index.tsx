@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./styles.css";
 
 interface AddNoteFormProps {
-  addNote: (note: string) => void;
+  addNote: (noteContent: string) => void;
 }
 
 export default function AddNoteForm({ addNote }: AddNoteFormProps) {
