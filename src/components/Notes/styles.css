@@ -1,0 +1,65 @@
+.notes {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  width: max-content;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.notes__navbar {
+  display: flex;
+  justify-content: center;
+  gap: min(50px, 7vw);
+  width: max-content;
+  max-width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.notes__navbar__button {
+  font-size: 1.4rem;
+  padding: 10px 15px;
+  background-color: inherit;
+  outline: none;
+  border: none;
+}
+
+.notes__add-note-form {
+  margin: 15px auto;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.notes__add-note-input,
+.notes__add-note-button {
+  font-size: 1.4rem;
+  border-radius: 12px;
+  outline: none;
+}
+
+.notes__add-note-input {
+  padding: 11px 10px 9px;
+  border: 1px solid #bdbdbd;
+  width: min(calc(100% - 80px), 300px);
+}
+
+.notes__add-note-button {
+  padding: 11px 20px 9px;
+  border: none;
+  background-color: #2f80ed;
+  color: white;
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.5rem;
+  max-width: 400px;
+  padding: 3px;
+  margin: 5px auto;
+}
