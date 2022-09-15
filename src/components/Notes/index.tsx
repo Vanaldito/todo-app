@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AllNotes from "./AllNotes";
+import ActiveNotes from "./ActiveNotes";
 import { Note } from "../../types";
 import { getNotes } from "../../services/get-notes";
 import { updateNotes } from "../../services/update-notes";
@@ -61,6 +62,12 @@ export default function Notes() {
         </button>
       </nav>
       {noteType === "all" && <AllNotes notes={notes} addNote={addNote} />}
+      {noteType === "active" && (
+        <ActiveNotes
+          activeNotes={notes.filter(note => note.type === "active")}
+          addNote={addNote}
+        />
+      )}
     </div>
   );
 }
