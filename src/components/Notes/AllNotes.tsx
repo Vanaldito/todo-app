@@ -10,7 +10,14 @@ export default function AllNotes() {
     <>
       <AddNoteForm />
       {notes &&
-        notes.map((note, index) => <Note content={note.content} key={index} />)}
+        notes.map((note, index) => (
+          <Note
+            type={note.type}
+            content={note.content}
+            index={index}
+            key={index}
+          />
+        ))}
     </>
   );
 }

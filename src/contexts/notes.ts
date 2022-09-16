@@ -5,6 +5,7 @@ interface NotesContext {
   notes: Note[];
   modifiers: {
     add: (noteContent: string) => void;
+    toggleType: (noteIndex: number) => void;
   };
 }
 

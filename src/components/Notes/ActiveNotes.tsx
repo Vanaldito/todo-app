@@ -5,15 +5,21 @@ import Note from "../Note";
 
 export default function ActiveNotes() {
   const { notes } = useContext(NotesContext) || {};
-  const activeNotes = notes?.filter(note => note.type === "active");
 
   return (
     <>
       <AddNoteForm />
-      {activeNotes &&
-        activeNotes.map((note, index) => (
-          <Note key={index} content={note.content} />
-        ))}
+      {notes &&
+        notes.map((note, index) =>
+          note.type === "active" ? (
+            <Note
+              key={index}
+              type="active"
+              content={note.content}
+              index={index}
+            />
+          ) : null
+        )}
     </>
   );
 }

@@ -31,8 +31,32 @@ export default function Notes() {
     setNotes(newNotes);
   }
 
+  function toggleNoteType(noteIndex: number) {
+    const newNotes = [...notes].map((note, index) => {
+      if (index !== noteIndex) return note;
+
+      const toogleType: {
+        active: "completed";
+        completed: "active";
+      } = {
+        active: "completed",
+        completed: "active",
+      };
+
+      return {
+        ...note,
+        type: toogleType[note.type],
+      };
+    });
+
+    updateNotes(newNotes);
+    setNotes(newNotes);
+  }
+
   return (
-    <NotesContext.Provider value={{ notes, modifiers: { add: addNote } }}>
+    <NotesContext.Provider
+      value={{ notes, modifiers: { add: addNote, toggleType: toggleNoteType } }}
+    >
       <div className="notes">
         <nav className="notes__navbar">
           <button
