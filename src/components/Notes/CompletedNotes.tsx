@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import NotesContext from "../../contexts/notes";
+import TrashIcon from "../Icons/Trash";
 import Note from "../Note";
 
 export default function CompletedNotes() {
@@ -22,7 +23,7 @@ export default function CompletedNotes() {
                 onClick={() => modifiers?.delete(index)}
                 className="completed-notes__delete-button"
               >
-                Delete
+                <TrashIcon color="orange" />
               </button>
             </div>
           ) : null
@@ -33,7 +34,7 @@ export default function CompletedNotes() {
           className="completed-notes__delete-all"
           onClick={modifiers?.deleteAll}
         >
-          Delete All
+          <TrashIcon color="white" /> Delete All
         </button>
       )}
     </>
