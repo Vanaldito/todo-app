@@ -41,6 +41,10 @@
   left: 0px;
 }
 
+.completed-notes {
+  margin-top: 15px;
+}
+
 .completed-notes__note {
   display: flex;
   align-items: center;

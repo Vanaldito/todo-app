@@ -7,7 +7,7 @@ export default function CompletedNotes() {
   const { notes, modifiers } = useContext(NotesContext) || {};
 
   return (
-    <>
+    <div className="completed-notes">
       {notes &&
         notes.map((note, index) =>
           note.type === "completed" ? (
@@ -37,6 +37,6 @@ export default function CompletedNotes() {
           <TrashIcon color="white" /> Delete All
         </button>
       )}
-    </>
+    </div>
   );
 }
