@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import NotesContext from "../../contexts/notes";
 
 import "./styles.css";
 
-interface AddNoteFormProps {
-  addNote: (noteContent: string) => void;
-}
-
-export default function AddNoteForm({ addNote }: AddNoteFormProps) {
+export default function AddNoteForm() {
   const [text, setText] = useState("");
+
+  const { modifiers } = useContext(NotesContext) || {};
 
   function submitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    text && addNote(text);
+    text && modifiers?.add(text);
 
     setText("");
   }

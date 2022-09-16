@@ -4,6 +4,7 @@ import ActiveNotes from "./ActiveNotes";
 import { Note } from "../../types";
 import { getNotes } from "../../services/get-notes";
 import { updateNotes } from "../../services/update-notes";
+import NotesContext from "../../contexts/notes";
 
 import "./styles.css";
 
@@ -31,43 +32,40 @@ export default function Notes() {
   }
 
   return (
-    <div className="notes">
-      <nav className="notes__navbar">
-        <button
-          className={`notes__navbar__button${
-            noteType === "all" ? " notes__navbar__button--active" : ""
-          }`}
-          type="button"
-          onClick={changeNoteType("all")}
-        >
-          All
-        </button>
-        <button
-          className={`notes__navbar__button${
-            noteType === "active" ? " notes__navbar__button--active" : ""
-          }`}
-          type="button"
-          onClick={changeNoteType("active")}
-        >
-          Active
-        </button>
-        <button
-          className={`notes__navbar__button${
-            noteType === "completed" ? " notes__navbar__button--active" : ""
-          }`}
-          type="button"
-          onClick={changeNoteType("completed")}
-        >
-          Completed
-        </button>
-      </nav>
-      {noteType === "all" && <AllNotes notes={notes} addNote={addNote} />}
-      {noteType === "active" && (
-        <ActiveNotes
-          activeNotes={notes.filter(note => note.type === "active")}
-          addNote={addNote}
-        />
-      )}
-    </div>
+    <NotesContext.Provider value={{ notes, modifiers: { add: addNote } }}>
+      <div className="notes">
+        <nav className="notes__navbar">
+          <button
+            className={`notes__navbar__button${
+              noteType === "all" ? " notes__navbar__button--active" : ""
+            }`}
+            type="button"
+            onClick={changeNoteType("all")}
+          >
+            All
+          </button>
+          <button
+            className={`notes__navbar__button${
+              noteType === "active" ? " notes__navbar__button--active" : ""
+            }`}
+            type="button"
+            onClick={changeNoteType("active")}
+          >
+            Active
+          </button>
+          <button
+            className={`notes__navbar__button${
+              noteType === "completed" ? " notes__navbar__button--active" : ""
+            }`}
+            type="button"
+            onClick={changeNoteType("completed")}
+          >
+            Completed
+          </button>
+        </nav>
+        {noteType === "all" && <AllNotes />}
+        {noteType === "active" && <ActiveNotes />}
+      </div>
+    </NotesContext.Provider>
   );
 }
