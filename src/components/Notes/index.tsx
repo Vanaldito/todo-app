@@ -62,8 +62,10 @@ export default function Notes() {
   }
 
   function deleteAll() {
-    updateNotes([]);
-    setNotes([]);
+    const newNotes = notes.filter(note => note.type !== "completed");
+
+    updateNotes(newNotes);
+    setNotes(newNotes);
   }
 
   return (
