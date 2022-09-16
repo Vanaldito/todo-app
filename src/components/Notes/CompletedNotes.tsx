@@ -27,7 +27,7 @@ export default function CompletedNotes() {
             </div>
           ) : null
         )}
-      {notes && notes.length > 0 && (
+      {notes && notes.some(note => note.type === "completed") && (
         <button
           type="button"
           className="completed-notes__delete-all"
