@@ -6,6 +6,8 @@ interface NotesContext {
   modifiers: {
     add: (noteContent: string) => void;
     toggleType: (noteIndex: number) => void;
+    delete: (noteIndex: number) => void;
+    deleteAll: () => void;
   };
 }
 

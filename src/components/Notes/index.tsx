@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AllNotes from "./AllNotes";
 import ActiveNotes from "./ActiveNotes";
+import CompletedNotes from "./CompletedNotes";
 import { Note } from "../../types";
 import { getNotes } from "../../services/get-notes";
 import { updateNotes } from "../../services/update-notes";
@@ -32,7 +33,7 @@ export default function Notes() {
   }
 
   function toggleNoteType(noteIndex: number) {
-    const newNotes = [...notes].map((note, index) => {
+    const newNotes = notes.map((note, index) => {
       if (index !== noteIndex) return note;
 
       const toogleType: {
@@ -53,9 +54,29 @@ export default function Notes() {
     setNotes(newNotes);
   }
 
+  function deleteNote(noteIndex: number) {
+    const newNotes = notes.filter((_, index) => index !== noteIndex);
+
+    updateNotes(newNotes);
+    setNotes(newNotes);
+  }
+
+  function deleteAll() {
+    updateNotes([]);
+    setNotes([]);
+  }
+
   return (
     <NotesContext.Provider
-      value={{ notes, modifiers: { add: addNote, toggleType: toggleNoteType } }}
+      value={{
+        notes,
+        modifiers: {
+          add: addNote,
+          toggleType: toggleNoteType,
+          delete: deleteNote,
+          deleteAll: deleteAll,
+        },
+      }}
     >
       <div className="notes">
         <nav className="notes__navbar">
@@ -89,6 +110,7 @@ export default function Notes() {
         </nav>
         {noteType === "all" && <AllNotes />}
         {noteType === "active" && <ActiveNotes />}
+        {noteType === "completed" && <CompletedNotes />}
       </div>
     </NotesContext.Provider>
   );
